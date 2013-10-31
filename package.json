@@ -1,0 +1,38 @@
+{
+  "name": "slimer",
+  "version": "2.5.5",
+  "author": "TryGhost",
+  "keywords": [
+    "github",
+    "hubot",
+    "campfire",
+    "bot"
+  ],
+  "description": "A simple helpful robot for your Company",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/github/hubot/raw/master/LICENSE"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/github/hubot.git"
+  },
+  "dependencies": {
+    "hubot": "2.5.5",
+    "hubot-scripts": "2.4.6",
+    "hubot-irc": "~0.1.15",
+    "ntwitter": "~0.5.0",
+    "moment": "~2.1.0",
+    "redis": "~0.8.4",
+    "jsdom": "~0.7.0",
+    "underscore": "~1.5.1",
+    "underscore.string": "~2.2.0rc",
+    "githubot": "~0.4.0"
+  },
+  "engines": {
+    "node": ">= 0.8.x",
+    "npm": ">= 1.1.x"
+  }
+}
