@@ -1,0 +1,4 @@
+Slimer
+======
+
+Ghosts IRC bot
