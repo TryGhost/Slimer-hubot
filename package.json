@@ -29,7 +29,8 @@
     "jsdom": "~0.7.0",
     "underscore": "~1.5.1",
     "underscore.string": "~2.2.0rc",
-    "githubot": "~0.4.0"
+    "githubot": "~0.4.0",
+    "request": "~2.27.0"
   },
   "engines": {
     "node": ">= 0.8.x",
