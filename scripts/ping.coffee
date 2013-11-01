@@ -7,6 +7,12 @@
 #   hubot time - Reply with current time
 #   hubot die - End hubot process
 
+adminRegexes = [
+  /^JohnONolan$/,
+  /^HannahWolfe$/,
+  /^jgable$/
+]
+
 module.exports = (robot) ->
   robot.respond /PING$/i, (msg) ->
     msg.send "PONG"
@@ -16,3 +22,11 @@ module.exports = (robot) ->
 
   robot.respond /TIME$/i, (msg) ->
     msg.send "Server time is: #{new Date()}"
+
+  robot.respond /DIE$/i, (response) ->
+    
+    for adminReg in adminRegexes when response.message?.user?.name?.match(adminReg)
+      response.send "Goodbye, cruel world."
+      setTimeout (-> process.exit 0), 1000
+
+    response.send "Ah ah ah, you didn't say the magic word."
