@@ -7,11 +7,7 @@
 #   hubot time - Reply with current time
 #   hubot die - End hubot process
 
-adminRegexes = [
-  /^JohnONolan$/,
-  /^HannahWolfe$/,
-  /^jgable$/
-]
+admins = require '../lib/admins'
 
 module.exports = (robot) ->
   robot.respond /PING$/i, (msg) ->
@@ -25,8 +21,9 @@ module.exports = (robot) ->
 
   robot.respond /DIE$/i, (response) ->
     
-    for adminReg in adminRegexes when response.message?.user?.name?.match(adminReg)
+    for adminReg in admins.regexes when response.message?.user?.name?.match(adminReg)
       response.send "Goodbye, cruel world."
       setTimeout (-> process.exit 0), 1000
+      return
 
     response.send "Ah ah ah, you didn't say the magic word."
