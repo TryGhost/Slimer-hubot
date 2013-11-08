@@ -3,7 +3,7 @@
 # Set Environment Variables
 export HUBOT_IRC_NICK=slimer
 export HUBOT_IRC_SERVER=irc.freenode.net
-export HUBOT_IRC_ROOMS="#ghost,#Ghost-VIP,#Ghost-Dev underground"
+export HUBOT_IRC_ROOMS="#ghost"
 export HUBOT_AUTH_ADMIN="jgable"
 export HUBOT_HOSTNAME="ec2-54-227-53-105.compute-1.amazonaws.com:8008"
 
