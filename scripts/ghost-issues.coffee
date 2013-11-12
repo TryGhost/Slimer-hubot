@@ -12,7 +12,7 @@ urls =
     issue: (user, repo, number) -> @repo(user, repo) + "/issues/#{number}"
 
 module.exports = (robot) ->
-    robot.hear /.* #([0-9]+).*/i, (response) ->
+    robot.hear /#([0-9]+)/, (response) ->
         issueNumber = response.match[1]
         issueUrl = urls.issue "TryGhost", "Ghost", issueNumber
         
