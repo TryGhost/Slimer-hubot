@@ -28,14 +28,14 @@ module.exports = (robot) ->
                 open = milestone.open_issues
                 closed = milestone.closed_issues
                 due = milestone.due_on 
-
                 text = "Milestone #{title} (#{open} open/#{closed} closed issues)"
                 if due
                     date = (new Date(due)).toDateString()
                     text += " is due on #{date}"
                 else 
                     text += " has no due date"
-                text += " (#{milestone.url})"
+                url = "https://github.com/TryGhost/Ghost/issues?milestone=#{milestone.number}&state=open"
+                text += " (#{url})"
 
                 response.send text
             catch e
