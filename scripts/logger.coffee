@@ -295,7 +295,7 @@ format_logs_for_html = (logs, presence=true) ->
     last_entry = l
     l.time = moment(l.timestamp).format("h:mm:ss a")
     l.datetime = moment(l.timestamp).format("MM-DD-YYYY h:mm:ss a")
-    l.timeid = moment(l.timestamp).format("ammss")
+    l.timeid = moment(l.timestamp).format("ahmmss")
     switch l.type
       when 'join'
         lines.push """<div class="row logentry">
