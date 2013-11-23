@@ -294,11 +294,13 @@ format_logs_for_html = (logs, presence=true) ->
               """
     last_entry = l
     l.time = moment(l.timestamp).format("h:mm:ss a")
+    l.datetime = moment(l.timestamp).format("MM-DD-YYYY h:mm:ss a")
+    l.timeid = moment(l.timestamp).format("ammss")
     switch l.type
       when 'join'
         lines.push """<div class="row logentry">
                         <div class="span2">
-                          <p>#{l.time}</p>
+                          <time id="#{l.timeid}" datetime="#{l.datetime}">#{l.time}</time>
                         </div>
                         <div class="span10">
                           <p><span class="username">#{l.from}</span> joined</p>
@@ -308,7 +310,7 @@ format_logs_for_html = (logs, presence=true) ->
       when 'part'
          lines.push """<div class="row logentry">
                         <div class="span2">
-                          <p>#{l.time}</p>
+                          <time id="#{l.timeid}" datetime="#{l.datetime}">#{l.time}</time>
                         </div>
                         <div class="span10">
                           <p><span class="username">#{l.from}</span> left</p>
@@ -318,7 +320,7 @@ format_logs_for_html = (logs, presence=true) ->
       when 'text'
          lines.push """<div class="row logentry">
                         <div class="span2">
-                          <p>#{l.time}</p>
+                          <time id="#{l.timeid}" datetime="#{l.datetime}">#{l.time}</time>
                         </div>
                         <div class="span10">
                           <p>&lt;<span class="username">#{l.from}</span>&gt;&nbsp;#{htmlEntities(l.message)}</p>
