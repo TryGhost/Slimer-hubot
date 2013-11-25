@@ -15,8 +15,11 @@ module.exports = (robot) ->
     robot.hear /#([0-9]+)/, (response) ->
         issueNumber = response.match[1]
         issueUrl = urls.issue "TryGhost", "Ghost", issueNumber
+        opts = 
+            url: issueUrl
+            headers: { 'User-Agent': 'Ghost Slimer' }
         
-        request issueUrl, (err, reqResp, body) ->
+        request opts, (err, reqResp, body) ->
             return if err
 
             try
@@ -24,16 +27,20 @@ module.exports = (robot) ->
                 title = if issueInfo.title.length > 100 then issueInfo.title.slice(0, 97) + '...' else issueInfo.title
                 response.send "[##{issueNumber}] #{title} (#{issueInfo.html_url})"
             catch e
-                console.log "Failed to get issue info"
+                console.log "Failed to get issue info:", e.message
+                console.log "Request:", issueUrl, body
 
     robot.respond /.*issue (\w+)\/(\w+)#([0-9]+).*/i, (response) ->
         user = response.match[1] || "TryGhost"
         repo = response.match[2] || "Ghost"
         issueNumber = response.match[3]
-
         issueUrl = urls.issue user, repo, issueNumber
+         
+        opts = 
+            url: issueUrl
+            headers: { 'User-Agent': 'Ghost Slimer' }
         
-        request issueUrl, (err, reqResp, body) ->
+        request opts, (err, reqResp, body) ->
             return if err
 
             try
@@ -41,4 +48,4 @@ module.exports = (robot) ->
                 title = if issueInfo.title.length > 100 then issueInfo.title.slice(0, 97) + '...' else issueInfo.title
                 response.send "[##{issueNumber}] #{title} (#{issueInfo.html_url})"
             catch e
-                console.log "Failed to get issue info"
+                console.log "Failed to get issue info:", e.message
