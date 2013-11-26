@@ -12,23 +12,28 @@ urls =
     issue: (user, repo, number) -> @repo(user, repo) + "/issues/#{number}"
 
 module.exports = (robot) ->
-    robot.hear /#([0-9]+)/, (response) ->
-        issueNumber = response.match[1]
-        issueUrl = urls.issue "TryGhost", "Ghost", issueNumber
-        opts = 
-            url: issueUrl
-            headers: { 'User-Agent': 'Ghost Slimer' }
-        
-        request opts, (err, reqResp, body) ->
-            return if err
+    robot.hear /#[1-9]\d*/g, (response) ->
+        issues = []
+        response.match.forEach (match) ->
+            issueNumber = match.slice(1)
+            issueUrl = urls.issue "TryGhost", "Ghost", issueNumber
+            opts = 
+                url: issueUrl
+                headers: { 'User-Agent': 'Ghost Slimer' }
 
-            try
-                issueInfo = JSON.parse body
-                title = if issueInfo.title.length > 100 then issueInfo.title.slice(0, 97) + '...' else issueInfo.title
-                response.send "[##{issueNumber}] #{title} (#{issueInfo.html_url})"
-            catch e
-                console.log "Failed to get issue info:", e.message
-                console.log "Request:", issueUrl, body
+            request opts, (err, reqResp, body) ->
+                return if err
+
+                try
+                    issueInfo = JSON.parse body
+                    title = if issueInfo.title.length > 100 then issueInfo.title.slice(0, 97) + '...' else issueInfo.title
+                    issues.push "[##{issueNumber}] #{title} (#{issueInfo.html_url})"
+                catch e
+                    console.log "Failed to get issue info:", e.message
+                    console.log "Request:", issueUrl, body
+                    issues.push "no info for ##{issueNumber}"
+                response.send issues.join ", " if issues.length == response.match.length
+
 
     robot.respond /.*issue (\w+)\/(\w+)#([0-9]+).*/i, (response) ->
         user = response.match[1] || "TryGhost"
