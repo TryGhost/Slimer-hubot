@@ -30,7 +30,8 @@
     "underscore": "~1.5.1",
     "underscore.string": "~2.2.0rc",
     "githubot": "~0.4.0",
-    "request": "~2.27.0"
+    "request": "~2.27.0",
+    "git-at-me": "~0.0.2"
   },
   "engines": {
     "node": ">= 0.8.x",
