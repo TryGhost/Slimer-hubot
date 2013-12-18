@@ -23,7 +23,7 @@ module.exports = (robot) ->
         #repo: 'Slimer'
         #events: ['push', 'pull_request', 'issues', 'issue_comment']
         # TESTING: Using ngrok to generate this while testing
-        url: 'http://ec2-54-227-53-105.compute-1.amazonaws.com:8008/github/events'
+        url: "http://#{process.env.HUBOT_HOSTNAME}/github/events"
         skipHook: true
         server: robot.router
 
@@ -50,7 +50,7 @@ module.exports = (robot) ->
         action = "updated" if action == "synchronize"
 
         # Format: <Slimer> ErisDS merged PR #102 on TryGhost/Ghost - Fix bug on image uploader, fixes #92 - by JohnONolan - http://github.com/TryGhost/Ghost/Pulls/102
-        msg = "#{sender.login} #{action} PR ##{number} on #{repository.full_name} - #{title} - by #{user.login} - #{html_url}"
+        msg = "#{sender.login} #{action} PR ##{number} on #{repository.full_name} - #{title} - #{html_url}"
 
         robot.messageRoom devRoom, msg
 
