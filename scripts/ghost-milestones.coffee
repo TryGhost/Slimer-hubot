@@ -10,12 +10,22 @@ request = require 'request'
 milestones = (user, repo) -> "https://api.github.com/repos/#{user}/#{repo}/milestones"
 
 module.exports = (robot) ->
-    robot.respond /milestone ([^\s]+)/, (response) ->
+    robot.respond /milestone ([^\s]+)/i, (response) ->
         milestoneName = response.match[1]
         milestoneUrl = milestones "TryGhost", "Ghost"
+
+        unless milestoneName
+            console.log "Missing milestoneName: #{milestoneName}"
+            return
+
+        opts = 
+            url: milestoneUrl
+            headers: { 'User-Agent': 'Ghost Slimer' }
         
-        request milestoneUrl, (err, reqResp, body) ->
-            return if err
+        request opts, (err, reqResp, body) ->
+            if err
+                console.log "Error getting milestone info: #{err.message}"
+                return
 
             try
                 ms = JSON.parse(body);
@@ -38,5 +48,5 @@ module.exports = (robot) ->
                 text += " (#{url})"
 
                 response.send text
-            catch e
-                console.log "Failed to get milestone info"
+            catch err
+                console.log "Failed to get milestone info: #{err.message}, #{body}"
