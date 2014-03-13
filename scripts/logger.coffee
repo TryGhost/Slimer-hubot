@@ -299,9 +299,9 @@ format_logs_for_html = (logs, presence=true) ->
     switch l.type
       when 'join'
         lines.push """<div class="row logentry">
-                        <div class="span2">
+                        <a href="##{l.timeid}" class="span2">
                           <time id="#{l.timeid}" datetime="#{l.datetime}">#{l.time}</time>
-                        </div>
+                        </a>
                         <div class="span10">
                           <p><span class="username">#{l.from}</span> joined</p>
                         </div>
@@ -309,9 +309,9 @@ format_logs_for_html = (logs, presence=true) ->
                     """
       when 'part'
          lines.push """<div class="row logentry">
-                        <div class="span2">
+                        <a href="##{l.timeid}" class="span2">
                           <time id="#{l.timeid}" datetime="#{l.datetime}">#{l.time}</time>
-                        </div>
+                        </a>
                         <div class="span10">
                           <p><span class="username">#{l.from}</span> left</p>
                         </div>
@@ -319,9 +319,9 @@ format_logs_for_html = (logs, presence=true) ->
                     """
       when 'text'
          lines.push """<div class="row logentry">
-                        <div class="span2">
+                        <a href="##{l.timeid}" class="span2">
                           <time id="#{l.timeid}" datetime="#{l.datetime}">#{l.time}</time>
-                        </div>
+                        </a>
                         <div class="span10">
                           <p>&lt;<span class="username">#{l.from}</span>&gt;&nbsp;#{htmlEntities(l.message)}</p>
                         </div>
