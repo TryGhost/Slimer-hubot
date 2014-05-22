@@ -22,7 +22,7 @@
   "dependencies": {
     "hubot": "2.5.5",
     "hubot-scripts": "2.4.6",
-    "hubot-irc": "~0.1.15",
+    "hubot-irc": "~0.2.4",
     "ntwitter": "~0.5.0",
     "moment": "~2.1.0",
     "redis": "~0.8.4",
