@@ -58,8 +58,15 @@ module.exports = (robot) ->
     githubEvents.on 'issues', (issueData) ->
         { action, issue, repository, sender } = issueData
 
-        # Format: <Slimer> gotdibbs created issue #1035 on TryGhost/Ghost - File uploads CSRF protection
-        msg = "#{sender.login} #{action} Issue ##{issue.number} on #{repository.full_name} - #{issue.title} - #{issue.html_url}"
+        return if action in ['labeled', 'unlabeled']
+
+        if action == 'assigned'
+          msg = "#{sender.login} #{action} Issue ##{issue.number} on #{repository.full_name} - #{issue.title} - #{issue.html_url} to #{issueData.assignee.login}"
+        else if action == 'unassigned'
+          msg = "#{sender.login} #{action} Issue ##{issue.number} on #{repository.full_name} - #{issue.title} - #{issue.html_url} from #{issueData.assignee.login}"
+        else
+          # Format: <Slimer> gotdibbs created issue #1035 on TryGhost/Ghost - File uploads CSRF protection
+          msg = "#{sender.login} #{action} Issue ##{issue.number} on #{repository.full_name} - #{issue.title} - #{issue.html_url}"
 
         robot.messageRoom devRoom, msg
 
