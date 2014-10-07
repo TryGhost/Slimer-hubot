@@ -3,8 +3,6 @@ names = [
   'JohnONolan',
   # The one who cusses like a sailor #
   'HannahWolfe',
-  # The one who gambles #
-  'matthojo',
   # The one who is also from Austria #
   'sebgie',
   # The one who knows all the memes #
@@ -12,7 +10,13 @@ names = [
   # The one who is the master of Azure #
   'gotdibbs',
   # The one who runs the bot #
-  'jgable'
+  'jgable',
+  # The one who is King of tests #
+  'jtw',
+  # The one who wanders Wyoming #
+  'novaugust',
+  # The Darth Vapor #
+  'pauladamdavis'
 ]
 
 regexes = (new RegExp("^#{name}$") for name in names)
