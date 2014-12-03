@@ -71,7 +71,7 @@ module.exports = (robot) ->
                 try
                     issueInfo = JSON.parse body
                     title = if issueInfo.title.length > 100 then issueInfo.title.slice(0, 97) + '...' else issueInfo.title
-                    issues.push "[##{issueNumber}] #{title} (#{issueInfo.html_url})"
+                    issues.push "[##{issueNumber}] #{title} #{issueInfo.html_url}"
                     foundIssue = true
                 catch e
                     console.log "Failed to get issue info:", e.message
@@ -85,7 +85,7 @@ module.exports = (robot) ->
                             try
                                 issueInfo = JSON.parse body
                                 title = if issueInfo.title.length > 100 then issueInfo.title.slice(0, 97) + '...' else issueInfo.title
-                                issues.push "[##{issueNumber}] #{title} (#{issueInfo.html_url})"
+                                issues.push "[##{issueNumber}] #{title} #{issueInfo.html_url}"
                                 foundIssue = true
                             catch e
                                 console.log "Failed to get issue info:", e.message
