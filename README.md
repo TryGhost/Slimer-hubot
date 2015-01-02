@@ -18,4 +18,4 @@ This will start a bot named `slimer-test` that will join `#ghost-slimer-test` on
 
 ## Copyright & License
 
-Copyright (c) 2013-2014 Ghost Foundation - Released under the [MIT license](LICENSE).
+Copyright (c) 2013-2015 Ghost Foundation - Released under the [MIT license](LICENSE).
