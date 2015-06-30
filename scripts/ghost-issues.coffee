@@ -93,12 +93,12 @@ module.exports = (robot) ->
                                 issues.push "no info for ##{issueNumber}"
 
                             if issues.length == response.match.length
-                                response.send issues.join ", "
+                                response.send issues.join " | "
                     else
                         issues.push "no info for ##{issueNumber}"
 
                     if issues.length == response.match.length
-                        response.send issues.join ", "
+                        response.send issues.join " | "
 
                 if issues.length == response.match.length && foundIssue
-                    response.send issues.join ", "
+                    response.send issues.join " | "
